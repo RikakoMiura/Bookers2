@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'top'=>'homes#top'
   get '/home/about' => "homes#index"
 
-  resources:books,only:[:new,:create,:show,:index,:destroy,:edit]
+  resources:books,only:[:show,:index,:edit]
 
-  resources :users,only:[:show,:index,:edit,:new]
+  resources :users,only:[:show,:index,:edit,:create,:new,:destroy]
 end

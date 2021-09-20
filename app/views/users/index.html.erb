@@ -1,0 +1,31 @@
+<main>
+  <sidebar>
+    <div>
+      <h1>User info</h1>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+      <p>name<%= user.name(current_user.id) %></p>
+      <p>introduction<%= user.introduction(current_user.id)%></p>
+      <li>
+        <%= link_to '投稿フォーム', edit_user_path %>
+      </li>
+    </div>
+    <div>
+      <h1>New book</h1>
+      <%= form_with model:@book, local:true do |f| %>
+
+        <h4>title</h4>
+        <%= f.text_field :title %>
+
+        <h4>opinion</h4>
+        <%= f.text_area :body %>
+
+        <%= f.submit '投稿' %>
+
+      <% end %>
+    </div>
+  </sidebar>
+  <blog>
+      <h1>Books</h1>
+
+  </blog>
+</main>
