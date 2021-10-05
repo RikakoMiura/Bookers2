@@ -1,31 +1,55 @@
-<main>
-  <sidebar>
-    <div>
-      <h1>User info</h1>
-      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-      <p>name<%= user.name(current_user.id) %></p>
-      <p>introduction<%= user.introduction(current_user.id)%></p>
-      <li>
-        <%= link_to '投稿フォーム', edit_user_path %>
-      </li>
-    </div>
-    <div>
-      <h1>New book</h1>
+<main class="container px-5 px-sm-0 mt-3">
+
+  <div class="row ">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <table class="table">
+        <tbody>
+          <tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name%></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction%></th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="btn-wrapper col-10 d-grid gap-2">
+          <%= link_to "",edit_user_path(current_user),class:"btn btn-outline-secondary btn-block fas fa-user-cog" %>
+        </div>
+      </div>
+      <h2>New book</h2>
       <%= form_with model:@book, local:true do |f| %>
-
-        <h4>title</h4>
+        <p>Title</p>
         <%= f.text_field :title %>
-
-        <h4>opinion</h4>
-        <%= f.text_area :body %>
-
-        <%= f.submit '投稿' %>
-
+        <p>Opinion</p>
+        <%= f.text_area :body %><br/>
+        <%= f.submit 'Create Book',class:"btn btn-success" %>
       <% end %>
     </div>
-  </sidebar>
-  <blog>
-      <h1>Books</h1>
-
-  </blog>
+    <div class="col-md-8  offset-md-1">
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th >name</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user|%>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:"40x40"%></td>
+            <td><%= user.name%></td>
+            <td><%= link_to "Show",user_path(user) %></td>
+          </tr>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>

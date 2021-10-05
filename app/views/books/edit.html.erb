@@ -1,0 +1,26 @@
+<main>
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <div class="text-danger">
+       <% if @book.errors.any? %>
+         <h3><%= @book.errors.count %>errors prohibited this obj from being saved:</h3>
+         <ul>
+           <% @book.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+           <% end %>
+         </ul>
+       <% end %>
+      </div>
+      <h2>Editing Book</h2>
+      <%= form_with model: @book, local:true do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title %>
+        <p class="mt-2">Opinion</p>
+        <%= f.text_area :body %></br>
+        <%= f.submit 'Update Book',class:"btn btn-success btn-sm" %>
+      <% end %>
+      <%=link_to "Show", book_path(@book)%> |
+      <%=link_to "Back",books_path%>
+    </div>
+  </div>
+</main>

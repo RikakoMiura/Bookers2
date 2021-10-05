@@ -2,10 +2,20 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to:'homes#top'
-  get 'top'=>'homes#top'
+
   get '/home/about' => "homes#index"
+  post '/users/:id/edit' => 'users#create' 
+  patch 'users/:id/edit' => 'users#create', as:'update_user'
+  post 'users/:id' => 'users#create'
+  post 'books/:id' => 'books#create'
+  post 'users/:id' => 'users#index'
 
-  resources:books,only:[:show,:index,:edit]
 
-  resources :users,only:[:show,:index,:edit,:create,:new,:destroy]
+  
+
+
+
+  resources:books,only:[:index,:show,:edit,:create,:update,:destroy]
+
+  resources :users,only:[:create,:index,:show,:edit,:update]
 end
