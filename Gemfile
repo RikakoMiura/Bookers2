@@ -70,3 +70,11 @@ gem 'jquery-rails'
 gem 'font-awesome-sass','~>5.13'
 
 gem 'kaminari','~>1.2.1'
+
+group:test do
+  gem 'capybara','>=2.15'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+
+end
